@@ -1,101 +1,173 @@
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils";
+import logo from "@/public/logo.svg";
 import Image from "next/image";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    return (
+        <div className="xl:flex">
+            {/* sidebar */}
+            <div className="hidden xl:flex flex-col bg-sidebar basis-[568px] min-h-full items-center justify-center">
+                {/* navigation */}
+                <nav className="flex flex-col mb-64 ">
+                    {/* Welcome */}
+                    <div className="flex items-center gap-4 text-white">
+                        {/* circle */}
+                        <div className="w-8 h-8 rounded-full border-2 border-primary"></div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+                        {/* text */}
+                        <p>Welcome</p>
+                    </div>
+                    <div className="w-[2px] h-12 bg-[#5D7FA3] ml-[15px]"></div>
+
+                    {/* Connect your Shopify store */}
+                    <div className="flex items-center gap-4 text-[#5D7FA3]">
+                        {/* circle */}
+                        <div className="w-8 h-8 rounded-full border-2 border-[#5D7FA3]"></div>
+
+                        {/* text */}
+                        <p>Connect your Shopify store</p>
+                    </div>
+                    <div className="w-[2px] h-12 bg-[#5D7FA3] ml-[15px]"></div>
+
+                    {/* Connect your customer support email */}
+                    <div className="flex items-center gap-4 text-[#5D7FA3]">
+                        {/* circle */}
+                        <div className="w-8 h-8 rounded-full border-2 border-[#5D7FA3]"></div>
+
+                        {/* text */}
+                        <p>Connect your customer support email</p>
+                    </div>
+                    <div className="w-[2px] h-12 bg-[#5D7FA3] ml-[15px]"></div>
+
+                    {/* Done */}
+                    <div className="flex items-center gap-4 text-[#5D7FA3]">
+                        {/* circle */}
+                        <div className="w-8 h-8 rounded-full border-2 border-[#5D7FA3]"></div>
+
+                        {/* text */}
+                        <p>Done</p>
+                    </div>
+                </nav>
+
+                <div className="w-[364px] flex flex-col items-center justify-center gap-4">
+                    <div className="h-24 p-4 flex items-center gap-4 bg-[#134267] rounded-lg text-[#96CAF7] text-sm">
+                        <span className="text-[32px] font-bold">5X</span>
+                        <p>
+                            Acquiring a new customer is 5x more costly than
+                            making an unhappy customer happy
+                        </p>
+                    </div>
+                    <div className="flex items-center justify-center gap-3">
+                        {[...Array(5)].map((_, index) => (
+                            <button
+                                key={index}
+                                className={cn(
+                                    "w-2 h-2 rounded-full bg-[#134267]",
+                                    {
+                                        "bg-[#96CAF7]": index === 0,
+                                    }
+                                )}
+                            ></button>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            {/* register form */}
+            <div className="flex flex-1 items-center justify-center sm:min-h-screen bg-bgImage lg:w-full">
+                {/* outer container */}
+                <div className="bg-white sm:rounded-lg sm:shadow-[0_5px_20px_#6C758B33] sm:px-10 sm:py-16">
+                    <div className="px-8 pt-4 text-[#20496C] sm:w-[460px] xl:p-0">
+                        {/* header logo */}
+                        <div className="flex items-center gap-1 mb-4 xl:mb-6">
+                            <Image
+                                src={logo}
+                                alt="logo"
+                                width={32}
+                                height={32}
+                            />
+                            <h2 className="text-2xl font-bold">Chad</h2>
+                        </div>
+
+                        {/* progress bar */}
+                        <div className="mb-8 xl:hidden">
+                            <p className="text-xs mb-2">Step 1 of 4</p>
+                            <div className="relative overflow-hidden w-full h-2 rounded-sm border border-[#C9D3E0]">
+                                <div className="absolute w-1/4 h-full left-0 rounded-r-sm bg-[#C9D3E0]" />
+                            </div>
+                        </div>
+
+                        {/* description */}
+                        <div className="mb-8">
+                            <h1 className="text-2xl mb-2 font-bold">
+                                Welcome to Chad
+                            </h1>
+                            <p className="text-sm text-[#4F637D]">
+                                Go live in 10 minutes! Our self-service widget
+                                empowers your customers to manage orders and
+                                track shipments 24/7 without driving you crazy.
+                            </p>
+                        </div>
+
+                        {/* form */}
+                        <form className="flex flex-col gap-6 mb-4" action="#">
+                            <div className="flex flex-col gap-2">
+                                <Label
+                                    htmlFor="email"
+                                    className="text-xs text-[#4F637D]"
+                                >
+                                    Email
+                                </Label>
+                                <Input
+                                    className="bg-[#F8F9FC] rounded-lg border-none placeholder:font-light placeholder:text-[#C3CAD5]"
+                                    id="email"
+                                    placeholder="megachad@trychad.com"
+                                />
+                            </div>
+                            <div className="flex flex-col gap-2">
+                                <Label
+                                    htmlFor="name"
+                                    className="text-xs text-[#4F637D]"
+                                >
+                                    Your name
+                                </Label>
+                                <Input
+                                    className="bg-[#F8F9FC] rounded-lg border-none placeholder:font-light placeholder:text-[#C3CAD5]"
+                                    id="name"
+                                    placeholder="Mega Chad"
+                                />
+                            </div>
+                            <div className="flex flex-col gap-2">
+                                <Label
+                                    htmlFor="password"
+                                    className="text-xs text-[#4F637D]"
+                                >
+                                    Password
+                                </Label>
+                                <Input
+                                    className="bg-[#F8F9FC] rounded-lg border-none placeholder:font-light placeholder:text-[#C3CAD5]"
+                                    id="password"
+                                    placeholder="Enter password"
+                                />
+                            </div>
+
+                            <Button className="font-regular">
+                                Create account
+                            </Button>
+                        </form>
+
+                        <div className="flex  justify-center text-xs">
+                            <p>
+                                Already have an account?{" "}
+                                <button className="text-primary">Login</button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+    );
 }
