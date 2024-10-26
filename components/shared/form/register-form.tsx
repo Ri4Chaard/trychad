@@ -1,48 +1,95 @@
+"use client";
+
 import React from "react";
 import { cn } from "@/lib/utils";
-import { Label } from "../../ui/label";
-import { Input } from "../../ui/input";
 import { Button } from "../../ui/button";
+import { useForm } from "react-hook-form";
+import {
+    formRegisterSchema,
+    TFormRegisterValues,
+} from "@/constants/auth-schemas";
+import { Form } from "@/components/ui/form";
+import { FormInput } from "./form-input";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useAuthStore } from "@/store/auth-store";
+import { timeout } from "@/lib/timeout";
+import { FormDescription } from "./form-description";
 
 interface Props {
     className?: string;
 }
 
 export const RegisterForm: React.FC<Props> = ({ className }) => {
+    const { setUser, onChangeState } = useAuthStore();
+
+    const form = useForm<TFormRegisterValues>({
+        resolver: zodResolver(formRegisterSchema),
+        defaultValues: {
+            email: "",
+            name: "",
+            password: "",
+        },
+    });
+
+    const onSubmit = async (data: TFormRegisterValues) => {
+        try {
+            await timeout(2000).then(() => {
+                const { password, ...user } = data;
+                setUser(user);
+                onChangeState("platform");
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
-        <form className={cn("flex flex-col gap-6", className)} action="#">
-            <div className="flex flex-col gap-2">
-                <Label htmlFor="email" className="text-xs text-[#4F637D]">
-                    Email
-                </Label>
-                <Input
-                    className="bg-[#F8F9FC] rounded-lg border-none placeholder:font-light placeholder:text-[#C3CAD5]"
-                    id="email"
+        <Form {...form}>
+            <FormDescription
+                className="mb-8"
+                title="Welcome to Chad"
+                description="Go live in 10 minutes! Our self-service widget
+                            empowers your customers to manage orders and track
+                            shipments 24/7 without driving you crazy."
+            />
+            <form
+                className={cn(
+                    "flex flex-col gap-6",
+                    {
+                        "pointer-events-none opacity-80":
+                            form.formState.isSubmitting,
+                    },
+                    className
+                )}
+                onSubmit={form.handleSubmit(onSubmit)}
+            >
+                <FormInput
+                    form={form}
+                    label="Email"
+                    name="email"
                     placeholder="megachad@trychad.com"
                 />
-            </div>
-            <div className="flex flex-col gap-2">
-                <Label htmlFor="name" className="text-xs text-[#4F637D]">
-                    Your name
-                </Label>
-                <Input
-                    className="bg-[#F8F9FC] rounded-lg border-none placeholder:font-light placeholder:text-[#C3CAD5]"
-                    id="name"
+                <FormInput
+                    form={form}
+                    label="Your name"
+                    name="name"
                     placeholder="Mega Chad"
                 />
-            </div>
-            <div className="flex flex-col gap-2">
-                <Label htmlFor="password" className="text-xs text-[#4F637D]">
-                    Password
-                </Label>
-                <Input
-                    className="bg-[#F8F9FC] rounded-lg border-none placeholder:font-light placeholder:text-[#C3CAD5]"
-                    id="password"
+                <FormInput
+                    form={form}
+                    label="Password"
+                    name="password"
                     placeholder="Enter password"
+                    type="password"
                 />
-            </div>
 
-            <Button className="font-regular">Create account</Button>
-        </form>
+                <Button
+                    className="font-regular"
+                    loading={form.formState.isSubmitting}
+                >
+                    Create account
+                </Button>
+            </form>
+        </Form>
     );
 };
