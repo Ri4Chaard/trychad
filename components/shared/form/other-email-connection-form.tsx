@@ -9,31 +9,31 @@ import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { FormDescription } from "./form-description";
 import { FormSelect } from "./form-select";
-import { _platforms } from "@/constants/constants";
+import { _platforms, _supportTicketPlatforms } from "@/constants/constants";
 
 interface Props {
     className?: string;
 }
 
-export const OtherPlatformConnectionForm: React.FC<Props> = ({ className }) => {
+export const OtherEmailConnectionForm: React.FC<Props> = ({ className }) => {
     const { user, setUser, onChangeState } = useAuthStore();
 
-    const form = useForm<{ platform: string }>({
+    const form = useForm<{ supportEmail: string }>({
         resolver: zodResolver(
             z.object({
-                platform: z.string().min(1, "Сhoose a platform"),
+                supportEmail: z.string().min(1, "Сhoose a platform"),
             })
         ),
         defaultValues: {
-            platform: "",
+            supportEmail: "",
         },
     });
 
-    const onSubmit = async (data: { platform: string }) => {
+    const onSubmit = async (data: { supportEmail: string }) => {
         try {
             await timeout(2000).then(() => {
                 setUser({ ...user, ...data });
-                onChangeState("success");
+                onChangeState("done");
             });
         } catch (error) {
             console.log(error);
@@ -43,8 +43,8 @@ export const OtherPlatformConnectionForm: React.FC<Props> = ({ className }) => {
         <div className={cn("", className)}>
             <FormDescription
                 className="mb-8"
-                title="Don’t use Shopify?"
-                description="Chad Beta is currently only available on Shopify. We’ll send you an email when Chad becomes available on your platform."
+                title="Don’t use Gmail?"
+                description="Chad Beta is currently only integrated with Gmail. We’ll send you an email when Chad becomes compatible with your support ticket platform."
             />
 
             <Form {...form}>
@@ -52,10 +52,10 @@ export const OtherPlatformConnectionForm: React.FC<Props> = ({ className }) => {
                     <FormSelect
                         form={form}
                         label="Platform"
-                        name="platform"
+                        name="supportEmail"
                         className="mb-8"
                         placeholder="Select platform"
-                        selectItems={_platforms}
+                        selectItems={_supportTicketPlatforms}
                     />
                     <Button
                         loading={form.formState.isSubmitting}
