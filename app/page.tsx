@@ -1,12 +1,13 @@
-import { AuthMenu } from "@/components/shared/auth-menu";
-import { Sidebar } from "@/components/shared/sidebar";
+import { AccountRegisterMenu } from "@/components/shared/auth/account-register-menu";
+import { RegistrationSidebar } from "@/components/shared/auth/registration-sidebar";
 
 export default function Home() {
+    //register page
     return (
         <div className="xl:flex">
-            <Sidebar />
+            <RegistrationSidebar />
 
-            <AuthMenu />
+            <AccountRegisterMenu />
         </div>
     );
 }

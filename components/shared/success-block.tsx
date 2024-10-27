@@ -1,22 +1,26 @@
-import React from "react";
+"use client";
+
+import React, { PropsWithChildren, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
-import { Check } from "lucide-react";
 
 interface Props {
     title: string;
-    description: string;
+    description?: string;
     btnText: string;
     onClick: () => void;
+    bottomText?: ReactNode;
     className?: string;
 }
 
-export const SuccessBlock: React.FC<Props> = ({
+export const SuccessBlock: React.FC<PropsWithChildren<Props>> = ({
     title,
     description,
     btnText,
     onClick,
+    bottomText,
     className,
+    children,
 }) => {
     return (
         <div
@@ -25,16 +29,20 @@ export const SuccessBlock: React.FC<Props> = ({
                 className
             )}
         >
-            <div className="flex items-center justify-center w-20 h-20 rounded-full bg-[#65BD47] text-white">
-                <Check width={40} height={40} strokeWidth={3} />
-            </div>
+            {children}
+
             <div className="flex flex-col items-center gap-2">
-                <h1 className="font-bold">{title}</h1>
-                <p className="text-sm text-center mb-4">{description}</p>
+                <h1 className={cn("font-bold", { "mb-2": !description })}>
+                    {title}
+                </h1>
+                {description && (
+                    <p className="text-sm text-center mb-4">{description}</p>
+                )}
 
                 <Button onClick={onClick} className="w-full">
                     {btnText}
                 </Button>
+                {bottomText}
             </div>
         </div>
     );

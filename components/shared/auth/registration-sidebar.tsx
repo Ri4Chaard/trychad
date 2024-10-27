@@ -1,13 +1,13 @@
 import React from "react";
 import { cn } from "@/lib/utils";
-import { NavigationMenu } from "./navigation-menu";
-import { Carousell } from "./carousell";
+import { RegistrationNavigationMenu } from "./registration-navigation-menu";
+import { Carousell } from "../carousell";
 
 interface Props {
     className?: string;
 }
 
-export const Sidebar: React.FC<Props> = ({ className }) => {
+export const RegistrationSidebar: React.FC<Props> = ({ className }) => {
     return (
         <div
             className={cn(
@@ -15,7 +15,7 @@ export const Sidebar: React.FC<Props> = ({ className }) => {
                 className
             )}
         >
-            <NavigationMenu className="mb-64" />
+            <RegistrationNavigationMenu className="mb-64" />
 
             <Carousell />
         </div>

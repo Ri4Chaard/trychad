@@ -3,6 +3,7 @@ import { create } from "zustand";
 export interface User {
     email: string;
     name: string;
+    password: string;
     platform?: string;
     supportEmail?: string;
 }
@@ -32,7 +33,7 @@ export interface Auth {
 }
 
 export const useAuthStore = create<Auth>((set) => ({
-    user: { email: "", name: "", platform: "", supportEmail: "" },
+    user: { email: "", name: "", password: "", platform: "", supportEmail: "" },
     registrationState: "register",
 
     setUser: (user) => {

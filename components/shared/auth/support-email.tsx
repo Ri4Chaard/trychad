@@ -1,7 +1,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
-import { GmailForm } from "./form/gmail-form";
-import { OtherEmailConnectionForm } from "./form/other-email-connection-form";
+import { GmailForm } from "../forms/gmail-form";
+import { OtherEmailConnectionForm } from "../forms/other-email-connection-form";
 
 interface Props {
     className?: string;

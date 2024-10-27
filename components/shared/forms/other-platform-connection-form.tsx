@@ -7,8 +7,8 @@ import { z } from "zod";
 import { timeout } from "@/lib/timeout";
 import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
-import { FormDescription } from "./form-description";
-import { FormSelect } from "./form-select";
+import { FormDescription } from "../form/form-description";
+import { FormSelect } from "../form/form-select";
 import { _platforms } from "@/constants/constants";
 
 interface Props {

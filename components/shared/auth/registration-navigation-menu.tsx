@@ -5,7 +5,7 @@ interface Props {
     className?: string;
 }
 
-export const NavigationMenu: React.FC<Props> = ({ className }) => {
+export const RegistrationNavigationMenu: React.FC<Props> = ({ className }) => {
     const stages = [
         { text: "Welcome" },
         { text: "Connect your Shopify store" },

@@ -9,11 +9,11 @@ import {
     TFormRegisterValues,
 } from "@/constants/auth-schemas";
 import { Form } from "@/components/ui/form";
-import { FormInput } from "./form-input";
+import { FormInput } from "../form/form-input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAuthStore } from "@/store/auth-store";
 import { timeout } from "@/lib/timeout";
-import { FormDescription } from "./form-description";
+import { FormDescription } from "../form/form-description";
 
 interface Props {
     className?: string;
@@ -34,8 +34,7 @@ export const RegisterForm: React.FC<Props> = ({ className }) => {
     const onSubmit = async (data: TFormRegisterValues) => {
         try {
             await timeout(2000).then(() => {
-                const { password, ...user } = data;
-                setUser(user);
+                setUser(data);
                 onChangeState("platform");
             });
         } catch (error) {

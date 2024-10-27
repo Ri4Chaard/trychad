@@ -2,8 +2,8 @@
 
 import React from "react";
 import { cn } from "@/lib/utils";
-import { FormLogo } from "./form/form-logo";
-import { FormProgressBar } from "./form/form-progress-bar";
+import { FormLogo } from "../form/form-logo";
+import { FormProgressBar } from "../form/form-progress-bar";
 import { useAuthStore } from "@/store/auth-store";
 import { StepManager } from "./step-manager";
 
@@ -11,7 +11,7 @@ interface Props {
     className?: string;
 }
 
-export const AuthMenu: React.FC<Props> = ({ className }) => {
+export const AccountRegisterMenu: React.FC<Props> = ({ className }) => {
     const { registrationState } = useAuthStore();
 
     const showFormElements = ["register", "platform", "email"].includes(

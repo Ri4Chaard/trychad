@@ -1,6 +1,6 @@
 import React from "react";
-import { ShopifyForm } from "./form/shopify-form";
-import { OtherPlatformConnectionForm } from "./form/other-platform-connection-form";
+import { ShopifyForm } from "../forms/shopify-form";
+import { OtherPlatformConnectionForm } from "../forms/other-platform-connection-form";
 
 interface Props {
     className?: string;
