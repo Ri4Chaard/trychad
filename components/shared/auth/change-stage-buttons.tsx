@@ -7,11 +7,13 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 interface Props {
     btnClassName?: string;
     className?: string;
+    onNavigate?: (direction: "prev" | "next") => void;
 }
 
 export const ChangeStageButtons: React.FC<Props> = ({
     btnClassName,
     className,
+    onNavigate,
 }) => {
     const { user, registrationState, onChangeState } = useAuthStore();
 
@@ -50,6 +52,7 @@ export const ChangeStageButtons: React.FC<Props> = ({
         }
         if (currentIndex < stepsOrder.length - 1 && canGoNext()) {
             onChangeState(stepsOrder[currentIndex + 1]);
+            onNavigate && onNavigate("next");
         }
     };
 
@@ -62,10 +65,12 @@ export const ChangeStageButtons: React.FC<Props> = ({
                 currentIndex > 0)
         ) {
             onChangeState("platform");
+            onNavigate && onNavigate("prev");
             return;
         }
         if (currentIndex > 0) {
             onChangeState(stepsOrder[currentIndex - 1]);
+            onNavigate && onNavigate("prev");
         }
     };
 
