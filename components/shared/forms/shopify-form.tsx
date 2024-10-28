@@ -8,8 +8,6 @@ import { FormDescription } from "../form/form-description";
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { Form } from "@/components/ui/form";
 import { _features } from "@/constants/constants";
 

@@ -18,7 +18,7 @@ interface Props {
 }
 
 export const LoginForm: React.FC<Props> = ({ className }) => {
-    const { user, setUser } = useAuthStore();
+    const { user } = useAuthStore();
     const router = useRouter();
 
     const form = useForm<TFormLoginValues>({
@@ -69,13 +69,13 @@ export const LoginForm: React.FC<Props> = ({ className }) => {
                 onSubmit={form.handleSubmit(onSubmit)}
             >
                 <FormInput
-                    form={form}
+                    formProps={form}
                     label="Email"
                     name="email"
                     placeholder="megachad@trychad.com"
                 />
                 <FormInput
-                    form={form}
+                    formProps={form}
                     label="Password"
                     name="password"
                     placeholder="Enter password"

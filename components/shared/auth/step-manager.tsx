@@ -8,11 +8,9 @@ import { SuccessCircle } from "../success-circle";
 import { SuccessBlock } from "../success-block";
 import { motion, AnimatePresence } from "framer-motion";
 
-interface Props {
-    className?: string;
-}
+interface Props {}
 
-export const StepManager: React.FC<Props> = ({ className }) => {
+export const StepManager: React.FC<Props> = () => {
     const router = useRouter();
     const { user, registrationState, onChangeState } = useAuthStore();
 

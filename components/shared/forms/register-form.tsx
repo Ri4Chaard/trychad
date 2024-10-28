@@ -71,19 +71,19 @@ export const RegisterForm: React.FC<Props> = ({ className }) => {
                 onSubmit={form.handleSubmit(onSubmit)}
             >
                 <FormInput
-                    form={form}
+                    formProps={form}
                     label="Email"
                     name="email"
                     placeholder="megachad@trychad.com"
                 />
                 <FormInput
-                    form={form}
+                    formProps={form}
                     label="Your name"
                     name="name"
                     placeholder="Mega Chad"
                 />
                 <FormInput
-                    form={form}
+                    formProps={form}
                     label="Password"
                     name="password"
                     placeholder="Enter password"

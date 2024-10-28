@@ -9,7 +9,7 @@ import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { FormDescription } from "../form/form-description";
 import { FormSelect } from "../form/form-select";
-import { _platforms, _supportTicketPlatforms } from "@/constants/constants";
+import { _supportTicketPlatforms } from "@/constants/constants";
 
 interface Props {
     className?: string;
@@ -56,7 +56,7 @@ export const OtherEmailConnectionForm: React.FC<Props> = ({ className }) => {
                     onSubmit={form.handleSubmit(onSubmit)}
                 >
                     <FormSelect
-                        form={form}
+                        formProps={form}
                         label="Platform"
                         name="supportEmail"
                         className="mb-8"

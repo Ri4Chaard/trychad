@@ -9,7 +9,7 @@ import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { Form } from "@/components/ui/form";
-import { _features, _featuresEmail } from "@/constants/constants";
+import { _featuresEmail } from "@/constants/constants";
 
 interface Props {
     className?: string;

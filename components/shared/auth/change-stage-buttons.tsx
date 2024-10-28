@@ -1,6 +1,6 @@
 import React from "react";
 import { cn } from "@/lib/utils";
-import { useAuthStore } from "@/store/auth-store";
+import { RegistrationState, useAuthStore } from "@/store/auth-store";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -17,7 +17,7 @@ export const ChangeStageButtons: React.FC<Props> = ({
 }) => {
     const { user, registrationState, onChangeState } = useAuthStore();
 
-    const stepsOrder: any = [
+    const stepsOrder: RegistrationState[] = [
         "register",
         "platform",
         "shopify_connected",

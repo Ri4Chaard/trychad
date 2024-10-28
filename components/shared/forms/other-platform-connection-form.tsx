@@ -56,7 +56,7 @@ export const OtherPlatformConnectionForm: React.FC<Props> = ({ className }) => {
                     onSubmit={form.handleSubmit(onSubmit)}
                 >
                     <FormSelect
-                        form={form}
+                        formProps={form}
                         label="Platform"
                         name="platform"
                         className="mb-8"

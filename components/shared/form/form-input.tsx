@@ -1,33 +1,34 @@
 import React from "react";
-import { cn } from "@/lib/utils";
 import {
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Control, FieldValues, Path } from "react-hook-form";
 
-interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
-    form: any;
+interface FormInputProps<T extends FieldValues>
+    extends React.InputHTMLAttributes<HTMLInputElement> {
+    formProps: {
+        control: Control<T>;
+    };
     label: string;
-    name: string;
+    name: Path<T>;
     className?: string;
 }
 
-export const FormInput: React.FC<Props> = ({
-    form,
+export const FormInput = <T extends FieldValues>({
+    formProps,
     label,
     name,
-    required,
     className,
     ...props
-}) => {
+}: FormInputProps<T>) => {
     return (
         <FormField
-            control={form.control}
+            control={formProps.control}
             name={name}
             render={({ field }) => (
                 <FormItem className={className}>
@@ -43,7 +44,6 @@ export const FormInput: React.FC<Props> = ({
                             {...props}
                         />
                     </FormControl>
-
                     <FormMessage />
                 </FormItem>
             )}

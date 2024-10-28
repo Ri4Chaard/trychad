@@ -1,14 +1,11 @@
 import React from "react";
-import { cn } from "@/lib/utils";
 import {
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
     FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import {
     Select,
     SelectContent,
@@ -16,27 +13,31 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
+import { Control, FieldValues, Path } from "react-hook-form";
 
-interface Props {
-    form: any;
+interface FormInputProps<T extends FieldValues>
+    extends React.InputHTMLAttributes<HTMLInputElement> {
+    formProps: {
+        control: Control<T>;
+    };
     label: string;
-    name: string;
+    name: Path<T>;
     selectItems: string[];
     placeholder?: string;
     className?: string;
 }
 
-export const FormSelect: React.FC<Props> = ({
-    form,
+export const FormSelect = <T extends FieldValues>({
+    formProps,
     label,
     name,
     selectItems,
     placeholder,
     className,
-}) => {
+}: FormInputProps<T>) => {
     return (
         <FormField
-            control={form.control}
+            control={formProps.control}
             name={name}
             render={({ field }) => (
                 <FormItem className={className}>

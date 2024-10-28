@@ -8,28 +8,21 @@ export interface User {
     supportEmail?: string;
 }
 
+export type RegistrationState =
+    | "register"
+    | "platform"
+    | "shopify_connected"
+    | "shopify_already_connected"
+    | "success"
+    | "email"
+    | "done";
+
 export interface Auth {
     user: User;
-    registrationState:
-        | "register"
-        | "platform"
-        | "success"
-        | "shopify_already_connected"
-        | "shopify_connected"
-        | "email"
-        | "done";
+    registrationState: RegistrationState;
 
     setUser: (user: User) => void;
-    onChangeState: (
-        registrationState:
-            | "register"
-            | "platform"
-            | "success"
-            | "shopify_already_connected"
-            | "shopify_connected"
-            | "email"
-            | "done"
-    ) => void;
+    onChangeState: (registrationState: RegistrationState) => void;
 }
 
 export const useAuthStore = create<Auth>((set) => ({
