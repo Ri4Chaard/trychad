@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Inter } from "next/font/google";
+import { Providers } from "@/components/shared/provider";
 
 const inter = Inter({
     subsets: ["cyrillic"],
@@ -20,8 +21,13 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
+            <head>
+                <link data-rh="true" rel="icon" href="/logo.svg" />
+            </head>
             <body className={inter.className}>
-                <main>{children}</main>
+                <main>
+                    <Providers>{children}</Providers>
+                </main>
             </body>
         </html>
     );

@@ -6,6 +6,7 @@ import { SupportEmail } from "./support-email";
 import { useRouter } from "next/navigation";
 import { SuccessCircle } from "../success-circle";
 import { SuccessBlock } from "../success-block";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface Props {
     className?: string;
@@ -51,7 +52,6 @@ export const StepManager: React.FC<Props> = ({ className }) => {
             >
                 <div className="relative">
                     <img src="/assets/icons/racoon.svg" alt="shopify" />
-
                     <SuccessCircle
                         className="absolute top-0 right-0 w-6 h-6"
                         checkSize={20}
@@ -83,7 +83,6 @@ export const StepManager: React.FC<Props> = ({ className }) => {
             >
                 <div className="relative">
                     <img src="/assets/icons/racoon.svg" alt="shopify" />
-
                     <SuccessCircle
                         className="absolute top-0 right-0 w-6 h-6"
                         checkSize={20}
@@ -124,8 +123,19 @@ export const StepManager: React.FC<Props> = ({ className }) => {
     };
 
     return (
-        <div className="step-container">
-            {steps[registrationState] || <div></div>}
+        <div className="step-container overflow-hidden">
+            <AnimatePresence mode="wait">
+                <motion.div
+                    key={registrationState}
+                    initial={{ opacity: 0, x: 100 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -100 }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                    className="step-content"
+                >
+                    {steps[registrationState]}
+                </motion.div>
+            </AnimatePresence>
         </div>
     );
 };

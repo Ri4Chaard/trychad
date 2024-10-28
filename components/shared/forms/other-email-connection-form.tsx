@@ -48,7 +48,13 @@ export const OtherEmailConnectionForm: React.FC<Props> = ({ className }) => {
             />
 
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)}>
+                <form
+                    className={cn({
+                        "pointer-events-none opacity-80":
+                            form.formState.isSubmitting,
+                    })}
+                    onSubmit={form.handleSubmit(onSubmit)}
+                >
                     <FormSelect
                         form={form}
                         label="Platform"

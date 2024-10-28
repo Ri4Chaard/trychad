@@ -8,7 +8,7 @@ interface Props {
     title: string;
     description?: string;
     btnText: string;
-    onClick: () => void;
+    onClick?: () => void;
     bottomText?: ReactNode;
     className?: string;
 }

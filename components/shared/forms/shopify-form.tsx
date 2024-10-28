@@ -40,7 +40,6 @@ export const ShopifyForm: React.FC<Props> = ({ className }) => {
             console.log(error);
         }
     };
-    console.log(user);
 
     return (
         <div className={cn("", className)}>
