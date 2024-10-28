@@ -1,11 +1,17 @@
+"use client";
+
 import React from "react";
 import { cn } from "@/lib/utils";
+import { ChangeStageButtons } from "./change-stage-buttons";
+import { useAuthStore } from "@/store/auth-store";
 
 interface Props {
     className?: string;
 }
 
 export const RegistrationNavigationMenu: React.FC<Props> = ({ className }) => {
+    const { user } = useAuthStore();
+
     const stages = [
         { text: "Welcome" },
         { text: "Connect your Shopify store" },
@@ -14,7 +20,7 @@ export const RegistrationNavigationMenu: React.FC<Props> = ({ className }) => {
     ];
 
     return (
-        <nav className={cn("flex flex-col", className)}>
+        <nav className={cn("flex flex-col relative", className)}>
             {stages.map((stage, index) => (
                 <>
                     <div className="flex items-center gap-4 ">
@@ -40,6 +46,12 @@ export const RegistrationNavigationMenu: React.FC<Props> = ({ className }) => {
                     )}
                 </>
             ))}
+            {user.email && (
+                <ChangeStageButtons
+                    className="text-[#93A8C1] absolute w-full -bottom-[88px]"
+                    btnClassName="text-base hover:bg-[#134267] hover:text-none"
+                />
+            )}
         </nav>
     );
 };

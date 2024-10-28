@@ -20,7 +20,7 @@ interface Props {
 }
 
 export const RegisterForm: React.FC<Props> = ({ className }) => {
-    const { setUser, onChangeState } = useAuthStore();
+    const { user, setUser, onChangeState } = useAuthStore();
 
     const form = useForm<TFormRegisterValues>({
         resolver: zodResolver(formRegisterSchema),
@@ -41,6 +41,14 @@ export const RegisterForm: React.FC<Props> = ({ className }) => {
             console.log(error);
         }
     };
+
+    React.useEffect(() => {
+        if (user) {
+            form.setValue("email", user.email);
+            form.setValue("name", user.name);
+            form.setValue("password", user.password);
+        }
+    }, [user]);
 
     return (
         <Form {...form}>

@@ -1,13 +1,5 @@
-import { AccountRegisterMenu } from "@/components/shared/auth/account-register-menu";
-import { RegistrationSidebar } from "@/components/shared/auth/registration-sidebar";
+import { redirect } from "next/navigation";
 
 export default function Home() {
-    //register page
-    return (
-        <div className="xl:flex">
-            <RegistrationSidebar />
-
-            <AccountRegisterMenu />
-        </div>
-    );
+    redirect("/registration");
 }

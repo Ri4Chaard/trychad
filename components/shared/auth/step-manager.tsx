@@ -15,6 +15,15 @@ export const StepManager: React.FC<Props> = ({ className }) => {
     const router = useRouter();
     const { user, registrationState, onChangeState } = useAuthStore();
 
+    React.useEffect(() => {
+        const screenWidth = window.innerWidth;
+
+        if (registrationState === "done" && screenWidth >= 768) {
+            onChangeState("register");
+            router.push("/login");
+        }
+    }, [registrationState, router]);
+
     const steps = {
         register: <Register />,
         platform: <Platform />,
@@ -106,6 +115,7 @@ export const StepManager: React.FC<Props> = ({ className }) => {
                 btnText="Ok"
                 onClick={() => {
                     router.push("/login");
+                    onChangeState("register");
                 }}
             >
                 <SuccessCircle />
